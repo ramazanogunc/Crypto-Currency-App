@@ -2,7 +2,7 @@ package com.ramo.cryptocurrency.di
 
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor
-import com.ramo.cryptocurrency.data.remote.ExampleService
+import com.ramo.cryptocurrency.data.remote.CoinService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,7 +13,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-private const val BASE_URL = "https://jsonplaceholder.typicode.com/"
+private const val BASE_URL = "https://api.coingecko.com/api/v3/"
 // TODO: change retrofit base url
 
 @Module
@@ -47,7 +47,7 @@ object NetworkModule {
     @Singleton
     fun provideExampleService(
         retrofit: Retrofit
-    ): ExampleService {
-        return retrofit.create(ExampleService::class.java)
+    ): CoinService {
+        return retrofit.create(CoinService::class.java)
     }
 }

@@ -30,7 +30,10 @@ abstract class BaseFragment<VB : ViewBinding, VM : SweetViewModel> : ViewBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initViewModel()
         super.onViewCreated(view, savedInstanceState)
+        initObservers()
     }
+
+    protected open fun initObservers() {}
 
     private fun initViewModel() {
         val vmClass = javaClass.findGenericWithType<VM>(1)
