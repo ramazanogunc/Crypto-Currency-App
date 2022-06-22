@@ -7,7 +7,6 @@ import com.ramo.cryptocurrency.core.BaseViewModel
 import com.ramo.cryptocurrency.domain.model.CoinItem
 import com.ramo.cryptocurrency.domain.repository.CoinRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -36,7 +35,6 @@ class HomeViewModel @Inject constructor(
 
 
     fun refreshList() {
-        // TODO: clear search item text
         getList()
     }
 
