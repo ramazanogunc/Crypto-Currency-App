@@ -21,8 +21,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun initUi() {
-        binding.rvList.render { parent: ViewGroup, _: Int, _: CoinItem ->
+    private fun initUi() = withVB {
+        srlList.setOnRefreshListener { viewModel.refreshList() }
+        rvList.render { parent: ViewGroup, _: Int, _: CoinItem ->
             return@render BasicViewHolder<ItemCoinBinding, CoinItem>(
                 inflater = ItemCoinBinding::inflate,
                 viewGroup = parent
@@ -30,7 +31,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                 binding.txtName.text = "${data.symbol} - ${data.name}"
             }
         }
-        binding.rvList.setOnClickListener {
+        rvList.setOnClickListener {
             // TODO: goto detail page 
         }
     }
@@ -39,5 +40,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         observeExt(viewModel.coinList) {
             binding.rvList.setData(it)
         }
+    }
+
+    override fun onChangeLoading(isLoading: Boolean) {
+        binding.srlList.isRefreshing = isLoading
     }
 }
