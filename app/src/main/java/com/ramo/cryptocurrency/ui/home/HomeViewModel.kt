@@ -1,6 +1,6 @@
-package com.ramo.myapplication.ui.home
+package com.ramo.cryptocurrency.ui.home
 
-import com.ramo.myapplication.core.BaseViewModel
+import com.ramo.cryptocurrency.core.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

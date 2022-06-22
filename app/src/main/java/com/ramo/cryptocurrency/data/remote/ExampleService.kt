@@ -1,4 +1,4 @@
-package com.ramo.myapplication.data.remote
+package com.ramo.cryptocurrency.data.remote
 
 import retrofit2.Response
 import retrofit2.http.GET

@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.ramo.myapplication.ui.home.HomeFragment"
+        android:name="com.ramo.cryptocurrency.ui.home.HomeFragment"
         android:label="HomeFragment" />
 </navigation>

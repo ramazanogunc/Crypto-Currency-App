@@ -1,4 +1,4 @@
-package com.ramo.myapplication.core
+package com.ramo.cryptocurrency.core
 
 import android.os.Bundle
 import android.view.View
@@ -7,8 +7,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
-import com.ramo.myapplication.R
-import com.ramo.myapplication.cusomviews.LoadingDialog
+import com.ramo.cryptocurrency.R
+import com.ramo.cryptocurrency.cusomviews.LoadingDialog
 import com.ramo.sweetsdk.SweetViewModel
 import com.ramo.sweetsdk.ext.findGenericWithType
 import com.ramo.sweetsdk.ext.safeContext

@@ -1,9 +1,9 @@
-package com.ramo.myapplication.ui.home
+package com.ramo.cryptocurrency.ui.home
 
 import android.os.Bundle
 import android.view.View
-import com.ramo.myapplication.core.BaseFragment
-import com.ramo.myapplication.databinding.FragmentHomeBinding
+import com.ramo.cryptocurrency.core.BaseFragment
+import com.ramo.cryptocurrency.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

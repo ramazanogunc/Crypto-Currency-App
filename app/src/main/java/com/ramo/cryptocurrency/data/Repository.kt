@@ -1,4 +1,4 @@
-package com.ramo.myapplication.data
+package com.ramo.cryptocurrency.data
 
 
 abstract class Repository {

@@ -1,4 +1,4 @@
-package com.ramo.myapplication.core.ext
+package com.ramo.cryptocurrency.core.ext
 
 import android.annotation.SuppressLint
 import android.widget.ImageView

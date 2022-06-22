@@ -1,4 +1,4 @@
-package com.ramo.myapplication
+package com.ramo.cryptocurrency
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

@@ -1,8 +1,8 @@
-package com.ramo.myapplication.ui
+package com.ramo.cryptocurrency.ui
 
 import android.os.Bundle
-import com.ramo.myapplication.core.BaseActivity
-import com.ramo.myapplication.databinding.ActivityMainBinding
+import com.ramo.cryptocurrency.core.BaseActivity
+import com.ramo.cryptocurrency.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

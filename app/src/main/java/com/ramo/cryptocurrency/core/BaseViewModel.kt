@@ -1,4 +1,4 @@
-package com.ramo.myapplication.core
+package com.ramo.cryptocurrency.core
 
 import com.ramo.sweetsdk.SweetViewModel
 

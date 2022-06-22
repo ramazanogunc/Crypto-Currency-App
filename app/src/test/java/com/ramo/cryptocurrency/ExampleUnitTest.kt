@@ -1,4 +1,4 @@
-package com.ramo.myapplication
+package com.ramo.cryptocurrency
 
 import org.junit.Test
 

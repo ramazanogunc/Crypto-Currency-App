@@ -1,8 +1,8 @@
-package com.ramo.myapplication.di
+package com.ramo.cryptocurrency.di
 
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor
-import com.ramo.myapplication.data.remote.ExampleService
+import com.ramo.cryptocurrency.data.remote.ExampleService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

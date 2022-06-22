@@ -1,9 +1,9 @@
-package com.ramo.myapplication.cusomviews
+package com.ramo.cryptocurrency.cusomviews
 
 import android.app.Dialog
 import android.content.Context
 import android.graphics.drawable.ColorDrawable
-import com.ramo.myapplication.R
+import com.ramo.cryptocurrency.R
 
 class LoadingDialog(context: Context) : Dialog(context) {
     init {
