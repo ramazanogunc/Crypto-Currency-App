@@ -2,6 +2,8 @@ package com.ramo.cryptocurrency.di
 
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.ramo.cryptocurrency.data.local.CoinDatabase
+import com.ramo.cryptocurrency.data.local.dao.CoinDao
 import com.ramo.cryptocurrency.data.remote.CoinService
 import dagger.Module
 import dagger.Provides
@@ -13,40 +15,27 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-private const val BASE_URL = "https://api.coingecko.com/api/v3/"
+
 
 @Module
 @InstallIn(SingletonComponent::class)
-object NetworkModule {
+object LocalModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(
+    fun provideCoinDb(
         @ApplicationContext context: Context
-    ): OkHttpClient {
-        return OkHttpClient.Builder()
-            .addInterceptor(ChuckerInterceptor(context))
-            .build()
+    ): CoinDatabase {
+        return CoinDatabase.getDatabase(context)
     }
 
     @Provides
     @Singleton
     fun provideRetrofit(
-        okHttpClient: OkHttpClient
-    ): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(okHttpClient)
-            .build()
+        coinDatabase: CoinDatabase
+    ): CoinDao {
+        return coinDatabase.coinDao
     }
 
 
-    @Provides
-    @Singleton
-    fun provideExampleService(
-        retrofit: Retrofit
-    ): CoinService {
-        return retrofit.create(CoinService::class.java)
-    }
 }

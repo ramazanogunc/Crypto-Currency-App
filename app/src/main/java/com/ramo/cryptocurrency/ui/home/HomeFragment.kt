@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.ramo.cryptocurrency.core.BaseFragment
 import com.ramo.cryptocurrency.core.BasicViewHolder
+import com.ramo.cryptocurrency.core.ext.textChangeDelayedListener
 import com.ramo.cryptocurrency.databinding.FragmentHomeBinding
 import com.ramo.cryptocurrency.databinding.ItemCoinBinding
 import com.ramo.cryptocurrency.domain.model.CoinItem
@@ -22,7 +23,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
     @SuppressLint("SetTextI18n")
     private fun initUi() = withVB {
-        srlList.setOnRefreshListener { viewModel.refreshList() }
+        etSearch.textChangeDelayedListener {
+            viewModel.search(it)
+        }
+        srlList.setOnRefreshListener {
+            etSearch.text = null
+            rvList.requestFocus()
+            viewModel.refreshList()
+        }
         rvList.render { parent: ViewGroup, _: Int, _: CoinItem ->
             return@render BasicViewHolder<ItemCoinBinding, CoinItem>(
                 inflater = ItemCoinBinding::inflate,

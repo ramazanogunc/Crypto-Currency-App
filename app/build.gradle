@@ -87,4 +87,10 @@ dependencies {
     implementation "com.github.ramazanogunc:Android-Sweet-Sdk:0.9.7"
     implementation "com.github.ramazanogunc:Sweet-Recycler-View:0.10.0"
 
+    // ROOM DB
+    // Room DB
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+
 }

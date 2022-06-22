@@ -7,7 +7,6 @@ abstract class Repository {
         return try {
             func.invoke()
         } catch (exception: Exception) {
-            // TODO: Project custom exception logic
             throw exception
         }
     }
