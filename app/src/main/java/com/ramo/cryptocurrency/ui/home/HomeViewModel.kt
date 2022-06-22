@@ -12,6 +12,8 @@ class HomeViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     val coinList = liveData {
-        emit(coinRepository.getAllCoins())
+        safeLiveData {
+            emit(coinRepository.getAllCoins())
+        }
     }
 }

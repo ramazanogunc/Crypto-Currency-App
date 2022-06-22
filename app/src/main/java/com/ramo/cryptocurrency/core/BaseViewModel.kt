@@ -10,4 +10,21 @@ abstract class BaseViewModel : SweetViewModel() {
             else -> showError(e)
         }
     }
+
+    protected suspend fun safeLiveData(
+        loadingVisible: Boolean = true,
+        customHandleException: ((Exception) -> Unit)? = null,
+        block: suspend () -> Unit
+    ) {
+        if (loadingVisible) showLoading()
+        try {
+            block()
+        } catch (e: Exception) {
+            if (customHandleException != null)
+                customHandleException.invoke(e)
+            else
+                handleSafeException(e)
+        }
+        if (loadingVisible) hideLoading()
+    }
 }
