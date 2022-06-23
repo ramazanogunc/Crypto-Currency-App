@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
@@ -24,6 +25,17 @@ abstract class BaseFragment<VB : ViewBinding, VM : SweetViewModel> : ViewBinding
             setTitle(getString(R.string.error))
         }
     }
+
+    protected var toolbarTitle: String?
+        set(value) {
+            if (activity is AppCompatActivity)
+                (activity as AppCompatActivity).supportActionBar?.title = value
+        }
+        get() {
+            if (activity is AppCompatActivity)
+                return (activity as AppCompatActivity).supportActionBar?.title?.toString()
+            return null
+        }
 
     protected val loadingDialog by lazy { LoadingDialog(requireContext()) }
 

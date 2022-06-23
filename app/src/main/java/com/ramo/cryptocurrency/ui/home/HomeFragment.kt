@@ -39,8 +39,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                 binding.txtName.text = "${data.symbol} - ${data.name}"
             }
         }
-        rvList.setOnClickListener {
-            // TODO: goto detail page 
+        rvList.setOnItemClickListener { _, _, data: CoinItem ->
+            viewModel.navigate(
+                HomeFragmentDirections.actionHomeFragmentToDetailFragment(
+                    data.id
+                )
+            )
         }
     }
 

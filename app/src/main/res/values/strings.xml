@@ -3,4 +3,6 @@
     <string name="error">Error</string>
     <string name="ok">Ok</string>
     <string name="search">Search</string>
+
+    <string name="fragment_home_title">Coin List</string>
 </resources>
