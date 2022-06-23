@@ -5,4 +5,8 @@
     <string name="search">Search</string>
 
     <string name="fragment_home_title">Coin List</string>
+    <string name="fragment_detail_price">Price</string>
+    <string name="usd">%.2f%n USD</string>
+    <string name="euro">%.2f%n Euro</string>
+    <string name="turkish_lira">%.2f%n TRY</string>
 </resources>

@@ -1,12 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:scrollbars="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardPrice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/size_12"
+            app:cardBackgroundColor="@color/lightGray"
+            app:cardCornerRadius="@dimen/size_8"
+            app:layout_constraintEnd_toStartOf="@id/imgFavorite"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/size_8">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txtTitlePrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/size_12"
+                    android:text="@string/fragment_detail_price"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@id/txtPriceUsd"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txtPriceUsd"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_12"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toStartOf="@id/txtPriceEuro"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtTitlePrice"
+                    tools:text="@string/usd" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txtPriceEuro"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toStartOf="@id/txtPriceTry"
+                    app:layout_constraintStart_toEndOf="@id/txtPriceUsd"
+                    app:layout_constraintTop_toTopOf="@id/txtPriceUsd"
+                    tools:text="@string/euro" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txtPriceTry"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/size_12"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/txtPriceEuro"
+                    app:layout_constraintTop_toTopOf="@id/txtPriceUsd"
+                    tools:text="@string/turkish_lira" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <ImageView
+            android:id="@+id/imgFavorite"
+            android:layout_width="@dimen/size_36"
+            android:layout_height="@dimen/size_36"
+            android:layout_marginEnd="@dimen/size_12"
+            app:layout_constraintBottom_toBottomOf="@id/cardPrice"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/cardPrice"
+            app:layout_constraintTop_toTopOf="@id/cardPrice" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

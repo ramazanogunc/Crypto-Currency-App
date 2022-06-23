@@ -25,7 +25,7 @@ data class CoinDetailResponse(
     val description: Description? = null,
 
     @field:SerializedName("market_cap_rank")
-    val marketCapRank: Int? = null,
+    val marketCapRank: Long? = null,
 
     @field:SerializedName("contract_address")
     val contractAddress: String? = null,
@@ -77,13 +77,13 @@ data class CoinDetailResponse(
     val marketData: MarketData? = null,
 
     @field:SerializedName("block_time_in_minutes")
-    val blockTimeInMinutes: Int? = null,
+    val blockTimeInMinutes: Long? = null,
 
     @field:SerializedName("name")
     val name: String? = null,
 
     @field:SerializedName("coingecko_rank")
-    val coingeckoRank: Int? = null,
+    val coingeckoRank: Long? = null,
 
     @field:SerializedName("hashing_algorithm")
     val hashingAlgorithm: Any? = null
@@ -110,7 +110,7 @@ data class MarketData(
     val mcapToTvlRatio: Any? = null,
 
     @field:SerializedName("market_cap_rank")
-    val marketCapRank: Int? = null,
+    val marketCapRank: Long? = null,
 
     @field:SerializedName("roi")
     val roi: Any? = null,
@@ -338,187 +338,187 @@ data class CurrentPrice(
 data class MarketCap(
 
     @field:SerializedName("usd")
-    val usd: Int? = null,
+    val usd: Double? = null,
 
     @field:SerializedName("xdr")
-    val xdr: Int? = null,
+    val xdr: Double? = null,
 
     @field:SerializedName("eos")
-    val eos: Int? = null,
+    val eos: Double? = null,
 
     @field:SerializedName("sgd")
-    val sgd: Int? = null,
+    val sgd: Double? = null,
 
     @field:SerializedName("vef")
-    val vef: Int? = null,
+    val vef: Double? = null,
 
     @field:SerializedName("bnb")
-    val bnb: Int? = null,
+    val bnb: Double? = null,
 
     @field:SerializedName("eth")
-    val eth: Int? = null,
+    val eth: Double? = null,
 
     @field:SerializedName("nzd")
-    val nzd: Int? = null,
+    val nzd: Double? = null,
 
     @field:SerializedName("brl")
-    val brl: Long? = null,
+    val brl: Double? = null,
 
     @field:SerializedName("xag")
-    val xag: Int? = null,
+    val xag: Double? = null,
 
     @field:SerializedName("chf")
-    val chf: Int? = null,
+    val chf: Double? = null,
 
     @field:SerializedName("mxn")
-    val mxn: Long? = null,
+    val mxn: Double? = null,
 
     @field:SerializedName("clp")
-    val clp: Long? = null,
+    val clp: Double? = null,
 
     @field:SerializedName("bits")
-    val bits: Long? = null,
+    val bits: Double? = null,
 
     @field:SerializedName("zar")
-    val zar: Long? = null,
+    val zar: Double? = null,
 
     @field:SerializedName("vnd")
-    val vnd: Long? = null,
+    val vnd: Double? = null,
 
     @field:SerializedName("xau")
-    val xau: Int? = null,
+    val xau: Double? = null,
 
     @field:SerializedName("aud")
-    val aud: Int? = null,
+    val aud: Double? = null,
 
     @field:SerializedName("ils")
-    val ils: Long? = null,
+    val ils: Double? = null,
 
     @field:SerializedName("idr")
-    val idr: Long? = null,
+    val idr: Double? = null,
 
     @field:SerializedName("xrp")
-    val xrp: Long? = null,
+    val xrp: Double? = null,
 
     @field:SerializedName("try")
-    val jsonMemberTry: Long? = null,
+    val jsonMemberTry: Double? = null,
 
     @field:SerializedName("hkd")
-    val hkd: Long? = null,
+    val hkd: Double? = null,
 
     @field:SerializedName("twd")
-    val twd: Long? = null,
+    val twd: Double? = null,
 
     @field:SerializedName("aed")
-    val aed: Long? = null,
+    val aed: Double? = null,
 
     @field:SerializedName("eur")
-    val eur: Int? = null,
+    val eur: Double? = null,
 
     @field:SerializedName("dkk")
-    val dkk: Long? = null,
+    val dkk: Double? = null,
 
     @field:SerializedName("bch")
-    val bch: Int? = null,
+    val bch: Double? = null,
 
     @field:SerializedName("cad")
-    val cad: Int? = null,
+    val cad: Double? = null,
 
     @field:SerializedName("myr")
-    val myr: Long? = null,
+    val myr: Double? = null,
 
     @field:SerializedName("dot")
-    val dot: Int? = null,
+    val dot: Double? = null,
 
     @field:SerializedName("link")
-    val link: Int? = null,
+    val link: Double? = null,
 
     @field:SerializedName("mmk")
-    val mmk: Long? = null,
+    val mmk: Double? = null,
 
     @field:SerializedName("nok")
-    val nok: Long? = null,
+    val nok: Double? = null,
 
     @field:SerializedName("btc")
-    val btc: Int? = null,
+    val btc: Double? = null,
 
     @field:SerializedName("lkr")
-    val lkr: Long? = null,
+    val lkr: Double? = null,
 
     @field:SerializedName("ngn")
-    val ngn: Long? = null,
+    val ngn: Double? = null,
 
     @field:SerializedName("czk")
-    val czk: Long? = null,
+    val czk: Double? = null,
 
     @field:SerializedName("pkr")
-    val pkr: Long? = null,
+    val pkr: Double? = null,
 
     @field:SerializedName("sek")
-    val sek: Long? = null,
+    val sek: Double? = null,
 
     @field:SerializedName("ltc")
-    val ltc: Int? = null,
+    val ltc: Double? = null,
 
     @field:SerializedName("uah")
-    val uah: Long? = null,
+    val uah: Double? = null,
 
     @field:SerializedName("bhd")
-    val bhd: Int? = null,
+    val bhd: Double? = null,
 
     @field:SerializedName("ars")
-    val ars: Long? = null,
+    val ars: Double? = null,
 
     @field:SerializedName("sar")
-    val sar: Long? = null,
+    val sar: Double? = null,
 
     @field:SerializedName("inr")
-    val inr: Long? = null,
+    val inr: Double? = null,
 
     @field:SerializedName("cny")
-    val cny: Long? = null,
+    val cny: Double? = null,
 
     @field:SerializedName("thb")
-    val thb: Long? = null,
+    val thb: Double? = null,
 
     @field:SerializedName("krw")
-    val krw: Long? = null,
+    val krw: Double? = null,
 
     @field:SerializedName("jpy")
-    val jpy: Long? = null,
+    val jpy: Double? = null,
 
     @field:SerializedName("bdt")
-    val bdt: Long? = null,
+    val bdt: Double? = null,
 
     @field:SerializedName("pln")
-    val pln: Long? = null,
+    val pln: Double? = null,
 
     @field:SerializedName("gbp")
-    val gbp: Int? = null,
+    val gbp: Double? = null,
 
     @field:SerializedName("bmd")
-    val bmd: Int? = null,
+    val bmd: Double? = null,
 
     @field:SerializedName("huf")
-    val huf: Long? = null,
+    val huf: Double? = null,
 
     @field:SerializedName("xlm")
-    val xlm: Long? = null,
+    val xlm: Double? = null,
 
     @field:SerializedName("sats")
-    val sats: Long? = null,
+    val sats: Double? = null,
 
     @field:SerializedName("kwd")
-    val kwd: Int? = null,
+    val kwd: Double? = null,
 
     @field:SerializedName("php")
-    val php: Long? = null,
+    val php: Double? = null,
 
     @field:SerializedName("yfi")
-    val yfi: Int? = null,
+    val yfi: Double? = null,
 
     @field:SerializedName("rub")
-    val rub: Long? = null
+    val rub: Double? = null
 )
 
 data class Description(
