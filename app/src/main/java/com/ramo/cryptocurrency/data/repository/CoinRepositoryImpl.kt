@@ -1,6 +1,5 @@
 package com.ramo.cryptocurrency.data.repository
 
-import android.util.Log
 import com.ramo.cryptocurrency.data.Repository
 import com.ramo.cryptocurrency.data.local.dao.CoinDao
 import com.ramo.cryptocurrency.data.remote.CoinService
@@ -44,7 +43,6 @@ class CoinRepositoryImpl @Inject constructor(
             while (true) {
                 val prices = coinService.coinDetail(coinId).toCoinDetail().price
                 emit(prices)
-                Log.d("TAG", "getCoinPrice: gönderildi")
                 delay(perSeconds * 1000L)
             }
         }

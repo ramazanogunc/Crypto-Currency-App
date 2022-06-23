@@ -1,6 +1,5 @@
 package com.ramo.cryptocurrency.ui.detail
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.ramo.cryptocurrency.core.BaseViewModel
 import com.ramo.cryptocurrency.domain.model.Prices
@@ -30,22 +29,26 @@ class DetailViewModel @Inject constructor(
     val price: LiveData<Prices> get() = _price
     private var priceJob: Job? = null
 
-    private val _refreshTime = MutableLiveData<Int>(1)
+    private val _refreshTime = MutableLiveData(5)
     val refreshTime: LiveData<Int> get() = _refreshTime
 
     init {
         getCoinPrice()
     }
 
-    fun getCoinPrice() {
+    private fun getCoinPrice() {
         priceJob?.cancel()
         priceJob = viewModelScope.launch {
-            safeSuspend(loadingVisible = false) {
+            safeSuspend(loadingVisible = false, customHandleException = {}) {
                 coinRepository.getCoinPrice(args.coinId, _refreshTime.value!!).collectLatest {
                     _price.value = it
-                    Log.d("TAG", "getCoinPrice: yakalandı")
                 }
             }
         }
+    }
+
+    fun changeRefreshTime(newTime: Int) {
+        _refreshTime.value = newTime
+        getCoinPrice()
     }
 }

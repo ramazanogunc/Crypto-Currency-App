@@ -1,7 +1,6 @@
 package com.ramo.cryptocurrency.ui.detail
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import com.ramo.cryptocurrency.R
 import com.ramo.cryptocurrency.core.BaseFragment
@@ -9,6 +8,7 @@ import com.ramo.cryptocurrency.core.ext.loadImage
 import com.ramo.cryptocurrency.core.ext.toCurrencyString
 import com.ramo.cryptocurrency.core.ext.toFormattedText
 import com.ramo.cryptocurrency.databinding.FragmentDetailBinding
+import com.ramo.cryptocurrency.ui.select.SelectBottomSheet
 import com.ramo.sweetsdk.ext.gone
 import com.ramo.sweetsdk.ext.observeExt
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,13 +23,21 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>() {
     }
 
     private fun initUi() = withVB {
-
+        btnChange.setOnClickListener {
+            SelectBottomSheet.newInstance(
+                title = context?.getString(R.string.fragment_detail_select_second) ?: "",
+                list = (1..60).map { it.toString() },
+                onSelect = { selected ->
+                    if (isAdded.not()) return@newInstance
+                    viewModel.changeRefreshTime(selected.toInt())
+                }
+            ).show(childFragmentManager, null)
+        }
     }
 
     override fun initObservers() {
         observeExt(viewModel.price) { price ->
             withVB {
-                Log.d("TAG", "getCoinPrice: gosterildi")
                 txtPriceUsd.text =
                     price.usd.toCurrencyString(Currency.getInstance("USD"))
                 txtPriceEuro.text =
@@ -57,6 +65,9 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>() {
                     coin.changeLast24h
                 )
             }
+        }
+        observeExt(viewModel.refreshTime) {
+            binding.txtRefreshTime.text = getString(R.string.fragment_detail_refresh_time, it)
         }
     }
 
