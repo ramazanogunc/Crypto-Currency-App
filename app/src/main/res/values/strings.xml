@@ -9,4 +9,14 @@
     <string name="usd">%.2f%n USD</string>
     <string name="euro">%.2f%n Euro</string>
     <string name="turkish_lira">%.2f%n TRY</string>
+    <string name="fragment_detail_last_update">Last Update: %1$s</string>
+    <string name="fragment_detail_title_description">Description</string>
+    <string name="fragment_detail_title_other">Other Info</string>
+    <string name="fragment_detail_hashing_algorithm">Hashing Algorithm: %1$s</string>
+    <string name="fragment_detail_price_change_percentage">Price change percentage in 24h: %.2f%n</string>
+    <string name="no_description">No description</string>
+    <string name="no_info">No info</string>
+
+
+    <string name="lorem_middle" translatable="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum do</string>
 </resources>

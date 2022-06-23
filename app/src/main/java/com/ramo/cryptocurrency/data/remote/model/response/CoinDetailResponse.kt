@@ -86,15 +86,17 @@ data class CoinDetailResponse(
     val coingeckoRank: Long? = null,
 
     @field:SerializedName("hashing_algorithm")
-    val hashingAlgorithm: Any? = null
+    val hashingAlgorithm: String? = null
 ) {
     fun toCoinDetail() = CoinDetail(
         id = id ?: "",
         name = name ?: "",
         symbol = symbol ?: "",
         price = marketData?.currentPrice?.toPrices() ?: Prices(),
-        description = description?.tr,
-        imageUrl = image?.small ?: ""
+        description = description?.tr ?: "",
+        imageUrl = image?.small ?: "",
+        hashingAlgorithm = hashingAlgorithm ?: "",
+        changeLast24h = marketData?.priceChangePercentage24h ?: 0.0
     )
 }
 

@@ -5,8 +5,11 @@ data class CoinDetail(
     val name: String,
     val symbol: String,
     val price: Prices,
-    val description: String?,
+    val description: String,
     val imageUrl: String,
+    val hashingAlgorithm: String,
+    val changeLast24h: Double,
+    var isFavorite: Boolean = false,
 )
 
 data class Prices(
