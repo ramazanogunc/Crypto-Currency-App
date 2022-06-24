@@ -19,7 +19,7 @@ class AuthRepositoryImpl : Repository(), AuthRepository {
         }
     }
 
-    override suspend fun register(name: String, email: String, password: String): Boolean {
+    override suspend fun register(email: String, password: String): Boolean {
         return exec {
             mAuth.createUserWithEmailAndPassword(email, password).await()
             true

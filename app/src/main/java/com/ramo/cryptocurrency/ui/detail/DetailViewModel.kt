@@ -73,7 +73,7 @@ class DetailViewModel @Inject constructor(
         val newCoin = coin.copy(isFavorite = coin.isFavorite.not())
         val useCase = if (newCoin.isFavorite) addFavoriteUseCase else removeFavoriteUseCase
         safeScope {
-            useCase.execute(coin)
+            useCase.execute(newCoin)
             _coin.value = newCoin
         }
     }

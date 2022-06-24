@@ -49,7 +49,7 @@ class RegisterViewModel @Inject constructor(
                 showError(exception = it, cancelable = true)
             }
         ) {
-            _isRegister.value = authRepository.login(email, password)
+            _isRegister.value = authRepository.register(email, password)
         }
     }
 }

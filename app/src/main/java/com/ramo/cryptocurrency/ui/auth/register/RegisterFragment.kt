@@ -20,7 +20,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterViewModel
     }
 
     private fun initUi() = withVB {
-        btnLogin.setOnClickListener {
+        btnRegister.setOnClickListener {
             viewModel.register()
         }
         btnLogin.setOnClickListener {
@@ -44,8 +44,8 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterViewModel
             binding.tilPassword.setState(it)
         }
 
-        observeExt(viewModel.isRegister) { isLogin ->
-            if (isLogin)
+        observeExt(viewModel.isRegister) { isRegister ->
+            if (isRegister)
                 findNavController().navigate(
                     RegisterFragmentDirections.actionRegisterFragmentToHomeFragment()
                 )
