@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
+import com.ramo.cryptocurrency.R
 import com.ramo.cryptocurrency.domain.usecase.PriceChangeUseCase
 import com.ramo.cryptocurrency.utils.NotificationHelper
 import dagger.assisted.Assisted
@@ -24,7 +25,11 @@ class PriceChangeWorker @AssistedInject constructor(
         var notificationBody = ""
         val change = priceChangeUseCase.execute(null)
         change.forEach {
-            notificationBody += "${it.coinDetail.name} is changed: Range is ${it.changePercentRange}\n"
+            notificationBody += applicationContext.getString(
+                R.string.notification_body,
+                it.coinDetail.name,
+                it.changePercentRange
+            )
         }
         if (notificationBody.isBlank()) return Result.success()
         else notificationBody = notificationBody.dropLast(2)

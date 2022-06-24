@@ -30,4 +30,6 @@
     <string name="cannot_empty">Cannot be empty</string>
     <string name="register">Register</string>
     <string name="favorite">Favorite</string>
+
+    <string name="notification_body">%1$s is changed: Percent: %.2f%n\n</string>
 </resources>

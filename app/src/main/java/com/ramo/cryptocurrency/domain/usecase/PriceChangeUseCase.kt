@@ -18,6 +18,7 @@ class PriceChangeUseCase @Inject constructor(
         val changeList = mutableListOf<PriceChange>()
         favoriteCoins.forEach { coinItem ->
             val response = coinRepository.getCoinInfo(coinItem.id, userId)
+            coinRepository.updateFirebase(response, userId)
             val change = (((response.price.usd / coinItem.price.usd) - 1) * 100).toFloat()
             if (change > 1)
                 changeList.add(PriceChange(response, change))

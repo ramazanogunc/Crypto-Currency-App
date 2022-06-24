@@ -13,4 +13,5 @@ interface CoinRepository {
     suspend fun getCoinInfo(coinId: String, currentUserId: String?): CoinDetail
     fun getCoinPrice(coinId: String, perSeconds: Int): Flow<Prices>
     suspend fun changeFavorite(isFavorite: Boolean, params: CoinDetail, currentUserId: String)
+    suspend fun updateFirebase(params: CoinDetail, currentUserId: String)
 }

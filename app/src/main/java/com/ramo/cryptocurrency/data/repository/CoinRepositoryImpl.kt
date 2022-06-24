@@ -83,6 +83,13 @@ class CoinRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun updateFirebase(params: CoinDetail, currentUserId: String) {
+        exec {
+            val refCol = getFirestoreRef(currentUserId)
+            refCol.document(params.id).set(params).await()
+        }
+    }
+
     private fun getFirestoreRef(userId: String) =
         Firebase.firestore.document("favorites/$userId")
             .collection("coins")
