@@ -23,4 +23,9 @@
     <string name="change">Change</string>
     <string name="fragment_detail_refresh_time">Refresh Time: %1$d Second</string>
     <string name="fragment_detail_select_second">Select refresh time (second)</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="cannot_empty">Cannot be empty</string>
 </resources>

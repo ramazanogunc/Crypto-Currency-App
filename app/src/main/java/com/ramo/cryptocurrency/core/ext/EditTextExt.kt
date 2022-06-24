@@ -3,6 +3,8 @@ package com.ramo.cryptocurrency.core.ext
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
+import com.google.android.material.textfield.TextInputLayout
+import com.ramo.cryptocurrency.ui.common.EditTextState
 import java.util.*
 
 fun EditText.textChangeDelayedListener(delayTime: Long = 700L, textChange: (String) -> Unit) {
@@ -24,4 +26,11 @@ fun EditText.textChangeDelayedListener(delayTime: Long = 700L, textChange: (Stri
             }, delayTime)
         }
     })
+}
+
+fun TextInputLayout.setState(editTextState: EditTextState) {
+    when (editTextState) {
+        is EditTextState.Valid -> this.error = null
+        is EditTextState.InValid -> this.error = context.getString(editTextState.messageId)
+    }
 }

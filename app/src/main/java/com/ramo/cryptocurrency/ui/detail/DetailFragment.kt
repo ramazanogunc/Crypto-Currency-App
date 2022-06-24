@@ -33,6 +33,9 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>() {
                 }
             ).show(childFragmentManager, null)
         }
+        imgFavorite.setOnClickListener {
+            viewModel.changeFavorite()
+        }
     }
 
     override fun initObservers() {

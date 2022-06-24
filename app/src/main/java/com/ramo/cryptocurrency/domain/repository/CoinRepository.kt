@@ -10,4 +10,5 @@ interface CoinRepository {
     suspend fun search(query: String): List<CoinItem>
     suspend fun getCoinInfo(coinId: String): CoinDetail
     fun getCoinPrice(coinId: String, perSeconds: Int): Flow<Prices>
+    suspend fun changeFavorite(isFavorite: Boolean, params: CoinDetail, currentUserId: String)
 }

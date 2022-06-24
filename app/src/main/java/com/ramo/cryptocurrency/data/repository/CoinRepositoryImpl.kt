@@ -47,4 +47,12 @@ class CoinRepositoryImpl @Inject constructor(
             }
         }
     }
+
+    override suspend fun changeFavorite(
+        isFavorite: Boolean,
+        params: CoinDetail,
+        currentUserId: String
+    ) {
+
+    }
 }
