@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import com.ramo.cryptocurrency.core.BaseFragment
 import com.ramo.cryptocurrency.core.ext.setState
 import com.ramo.cryptocurrency.databinding.FragmentLoginBinding
+import com.ramo.cryptocurrency.ui.MainActivity
 import com.ramo.sweetsdk.ext.observeExt
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -43,10 +44,12 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
         }
 
         observeExt(viewModel.isLogin) { isLogin ->
-            if (isLogin)
+            if (isLogin) {
+                if (activity is MainActivity) (activity as MainActivity).initWorker()
                 findNavController().navigate(
                     LoginFragmentDirections.actionLoginFragmentToHomeFragment()
                 )
+            }
         }
     }
 }

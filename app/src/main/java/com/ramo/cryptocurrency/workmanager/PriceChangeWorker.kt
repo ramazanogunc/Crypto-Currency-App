@@ -5,15 +5,20 @@ import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.ramo.cryptocurrency.domain.usecase.PriceChangeUseCase
+import com.ramo.cryptocurrency.utils.NotificationHelper
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 
 @HiltWorker
-class PriceChangeWorkManager @AssistedInject constructor(
+class PriceChangeWorker @AssistedInject constructor(
     @Assisted appContext: Context,
     @Assisted workerParams: WorkerParameters,
     private val priceChangeUseCase: PriceChangeUseCase
 ) : CoroutineWorker(appContext, workerParams) {
+
+    companion object {
+        const val TAG = "PriceChangeWorker"
+    }
 
     override suspend fun doWork(): Result {
         var notificationBody = ""
@@ -23,8 +28,9 @@ class PriceChangeWorkManager @AssistedInject constructor(
         }
         if (notificationBody.isBlank()) return Result.success()
         else notificationBody = notificationBody.dropLast(2)
-        // TODO: sent notification
+        NotificationHelper.sendNotification(applicationContext, notificationBody)
         return Result.success()
+
     }
 
 

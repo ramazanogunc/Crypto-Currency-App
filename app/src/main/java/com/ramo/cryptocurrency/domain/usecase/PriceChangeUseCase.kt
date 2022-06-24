@@ -19,7 +19,7 @@ class PriceChangeUseCase @Inject constructor(
         favoriteCoins.forEach { coinItem ->
             val response = coinRepository.getCoinInfo(coinItem.id, userId)
             val change = (((response.price.usd / coinItem.price.usd) - 1) * 100).toFloat()
-            if (change > 3)
+            if (change > 1)
                 changeList.add(PriceChange(response, change))
         }
         return changeList.toList()

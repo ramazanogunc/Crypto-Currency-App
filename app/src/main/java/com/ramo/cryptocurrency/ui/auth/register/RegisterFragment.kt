@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import com.ramo.cryptocurrency.core.BaseFragment
 import com.ramo.cryptocurrency.core.ext.setState
 import com.ramo.cryptocurrency.databinding.FragmentRegisterBinding
+import com.ramo.cryptocurrency.ui.MainActivity
 import com.ramo.sweetsdk.ext.observeExt
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -45,10 +46,13 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterViewModel
         }
 
         observeExt(viewModel.isRegister) { isRegister ->
-            if (isRegister)
+            if (isRegister) {
+                if (activity is MainActivity) (activity as MainActivity).initWorker()
                 findNavController().navigate(
                     RegisterFragmentDirections.actionRegisterFragmentToHomeFragment()
                 )
+            }
+
         }
     }
 }

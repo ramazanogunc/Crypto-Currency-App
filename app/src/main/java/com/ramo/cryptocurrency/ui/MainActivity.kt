@@ -5,10 +5,16 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
 import com.ramo.cryptocurrency.R
 import com.ramo.cryptocurrency.core.BaseActivity
 import com.ramo.cryptocurrency.databinding.ActivityMainBinding
+import com.ramo.cryptocurrency.workmanager.PriceChangeWorker
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.concurrent.TimeUnit
+
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
@@ -16,6 +22,20 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initNavigation()
+        initWorker()
+    }
+
+    fun initWorker() {
+        val work = PeriodicWorkRequestBuilder<PriceChangeWorker>(15, TimeUnit.MINUTES)
+            .addTag(PriceChangeWorker.TAG)
+            .setInitialDelay(5, TimeUnit.MINUTES)
+            .build()
+
+        val instanceWorkManager = WorkManager.getInstance(this)
+        instanceWorkManager.enqueueUniquePeriodicWork(
+            PriceChangeWorker.TAG,
+            ExistingPeriodicWorkPolicy.KEEP, work
+        )
     }
 
 
