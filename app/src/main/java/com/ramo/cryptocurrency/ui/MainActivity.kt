@@ -40,12 +40,9 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
                 toolbar.navigationIcon = null
 
         }
+        binding.bottomNav.setupWithNavController(navController)
 
-        /*
-        findViewById<BottomNavigationView>(R.id.bottom_nav)
-            .setupWithNavController(navController)
-
-
+/*
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if (destination.id == R.id.userAvatarFragment) {
                 binding.bottomNav.gone()

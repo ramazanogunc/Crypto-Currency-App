@@ -1,16 +1,23 @@
 package com.ramo.cryptocurrency.domain.model
 
 data class CoinDetail(
-    val id: String,
-    val name: String,
-    val symbol: String,
-    val price: Prices,
-    val description: String,
-    val imageUrl: String,
-    val hashingAlgorithm: String,
-    val changeLast24h: Double,
+    var id: String = "",
+    var name: String = "",
+    var symbol: String = "",
+    var price: Prices = Prices(),
+    var description: String = "",
+    var imageUrl: String = "",
+    var hashingAlgorithm: String = "",
+    var changeLast24h: Double = 0.0,
     var isFavorite: Boolean = false,
-)
+) {
+
+    fun toCoinItem() = CoinItem(
+        id = id,
+        name = name,
+        symbol = symbol
+    )
+}
 
 data class Prices(
     var turkishLira: Double = 0.0,

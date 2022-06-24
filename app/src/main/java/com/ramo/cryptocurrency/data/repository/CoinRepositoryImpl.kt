@@ -1,6 +1,7 @@
 package com.ramo.cryptocurrency.data.repository
 
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObjects
 import com.google.firebase.ktx.Firebase
 import com.ramo.cryptocurrency.data.Repository
 import com.ramo.cryptocurrency.data.local.dao.CoinDao
@@ -26,6 +27,19 @@ class CoinRepositoryImpl @Inject constructor(
             val list = response.map { it.toCoinItem() }
             coinDao.insert(list)
             list
+        }
+    }
+
+    override suspend fun getFavoriteCoins(userId: String): List<CoinItem> {
+        return exec {
+            getFirestoreRef(userId).get().await().toObjects<CoinDetail>().map { it.toCoinItem() }
+        }
+    }
+
+    override suspend fun searchInFavorite(query: String, userId: String): List<CoinItem> {
+        return exec {
+            getFirestoreRef(userId).whereGreaterThanOrEqualTo("name", query).get().await()
+                .toObjects<CoinDetail>().map { it.toCoinItem() }
         }
     }
 

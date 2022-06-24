@@ -1,10 +1,11 @@
-package com.ramo.cryptocurrency.ui.home
+package com.ramo.cryptocurrency.ui.favorite
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.ramo.cryptocurrency.core.BaseViewModel
 import com.ramo.cryptocurrency.domain.model.CoinItem
+import com.ramo.cryptocurrency.domain.repository.AuthRepository
 import com.ramo.cryptocurrency.domain.repository.CoinRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
@@ -12,38 +13,32 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
-    private val coinRepository: CoinRepository
+class FavoriteViewModel @Inject constructor(
+    private val coinRepository: CoinRepository,
+    private val authRepository: AuthRepository,
 ) : BaseViewModel() {
+
 
     private val _coinList = MutableLiveData<List<CoinItem>>()
     val coinList: LiveData<List<CoinItem>> get() = _coinList
-
     private var _searchJob: Job? = null
 
-    init {
-        getList()
-    }
-
-
-    private fun getList() {
+    fun getList() {
         safeScope {
-            _coinList.value = coinRepository.getAllCoins()
+            val userId: String = authRepository.getCurrentUserId()
+            _coinList.value = coinRepository.getFavoriteCoins(userId)
         }
-    }
-
-
-    fun refreshList() {
-        getList()
     }
 
     fun search(query: String) {
         if (query.isBlank().not() && query.length < 2) return
         _searchJob?.cancel()
         _searchJob = viewModelScope.launch {
-            safeSuspend {
-                _coinList.value = coinRepository.search(query)
+            safeSuspend(customHandleException = {}) {
+                val userId: String = authRepository.getCurrentUserId()
+                _coinList.value = coinRepository.searchInFavorite(query, userId)
             }
         }
     }
+
 }
