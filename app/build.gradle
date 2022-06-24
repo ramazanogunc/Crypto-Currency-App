@@ -61,6 +61,7 @@ dependencies {
     // DI DAGGER HILT
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
+    implementation "androidx.hilt:hilt-work:1.0.0"
 
     // NAVIGATION COMPONENT
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
@@ -99,5 +100,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.firebase:firebase-firestore-ktx'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.2'
+
+    // WORK MANAGER FOR BACKGROUND TASK
+    implementation "androidx.work:work-runtime-ktx:$work_version"
 
 }

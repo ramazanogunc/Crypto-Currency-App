@@ -30,9 +30,9 @@ class CoinRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getFavoriteCoins(userId: String): List<CoinItem> {
+    override suspend fun getFavoriteCoins(userId: String): List<CoinDetail> {
         return exec {
-            getFirestoreRef(userId).get().await().toObjects<CoinDetail>().map { it.toCoinItem() }
+            getFirestoreRef(userId).get().await().toObjects()
         }
     }
 

@@ -26,7 +26,7 @@ class FavoriteViewModel @Inject constructor(
     fun getList() {
         safeScope {
             val userId: String = authRepository.getCurrentUserId()
-            _coinList.value = coinRepository.getFavoriteCoins(userId)
+            _coinList.value = coinRepository.getFavoriteCoins(userId).map { it.toCoinItem() }
         }
     }
 
