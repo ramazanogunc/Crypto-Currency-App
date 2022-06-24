@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.ramo.cryptocurrency.core.BaseViewModel
 import com.ramo.cryptocurrency.domain.model.CoinDetail
 import com.ramo.cryptocurrency.domain.model.Prices
+import com.ramo.cryptocurrency.domain.repository.AuthRepository
 import com.ramo.cryptocurrency.domain.repository.CoinRepository
 import com.ramo.cryptocurrency.domain.usecase.AddFavoriteUseCase
 import com.ramo.cryptocurrency.domain.usecase.RemoveFavoriteUseCase
@@ -20,6 +21,7 @@ import javax.inject.Inject
 class DetailViewModel @Inject constructor(
     private val state: SavedStateHandle,
     private val coinRepository: CoinRepository,
+    private val authRepository: AuthRepository,
     private val addFavoriteUseCase: AddFavoriteUseCase,
     private val removeFavoriteUseCase: RemoveFavoriteUseCase,
 ) : BaseViewModel() {
@@ -40,7 +42,12 @@ class DetailViewModel @Inject constructor(
 
     init {
         safeScope {
-            _coin.value = coinRepository.getCoinInfo(args.coinId)
+            var userId: String? = null
+            try {
+                userId = authRepository.getCurrentUserId()
+            } catch (e: Exception) {
+            }
+            _coin.value = coinRepository.getCoinInfo(args.coinId, userId)
         }
         getCoinPrice()
     }
@@ -63,11 +70,11 @@ class DetailViewModel @Inject constructor(
 
     fun changeFavorite() {
         val coin = coin.value ?: return
-        val newFavoriteState = coin.isFavorite.not()
-        val useCase = if (newFavoriteState) addFavoriteUseCase else removeFavoriteUseCase
+        val newCoin = coin.copy(isFavorite = coin.isFavorite.not())
+        val useCase = if (newCoin.isFavorite) addFavoriteUseCase else removeFavoriteUseCase
         safeScope {
             useCase.execute(coin)
-            _coin.value = coin.copy(isFavorite = newFavoriteState)
+            _coin.value = newCoin
         }
     }
 }

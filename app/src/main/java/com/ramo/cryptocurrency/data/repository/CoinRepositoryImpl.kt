@@ -1,5 +1,7 @@
 package com.ramo.cryptocurrency.data.repository
 
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.ramo.cryptocurrency.data.Repository
 import com.ramo.cryptocurrency.data.local.dao.CoinDao
 import com.ramo.cryptocurrency.data.remote.CoinService
@@ -10,6 +12,7 @@ import com.ramo.cryptocurrency.domain.repository.CoinRepository
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 class CoinRepositoryImpl @Inject constructor(
@@ -32,9 +35,13 @@ class CoinRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getCoinInfo(coinId: String): CoinDetail {
+    override suspend fun getCoinInfo(coinId: String, currentUserId: String?): CoinDetail {
         return exec {
-            coinService.coinDetail(coinId).toCoinDetail()
+            val data = coinService.coinDetail(coinId).toCoinDetail()
+            if (currentUserId != null)
+                data.isFavorite =
+                    getFirestoreRef(currentUserId).document(data.id).get().await().exists()
+            data
         }
     }
 
@@ -53,6 +60,16 @@ class CoinRepositoryImpl @Inject constructor(
         params: CoinDetail,
         currentUserId: String
     ) {
-
+        exec {
+            val refCol = getFirestoreRef(currentUserId)
+            if (isFavorite)
+                refCol.document(params.id).set(params).await()
+            else
+                refCol.document(params.id).delete().await()
+        }
     }
+
+    private fun getFirestoreRef(userId: String) =
+        Firebase.firestore.document("favorites/$userId")
+            .collection("coins")
 }

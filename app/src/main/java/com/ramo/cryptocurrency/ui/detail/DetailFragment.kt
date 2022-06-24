@@ -67,6 +67,12 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>() {
                     R.string.fragment_detail_price_change_percentage,
                     coin.changeLast24h
                 )
+                imgFavorite.setImageResource(
+                    if (coin.isFavorite)
+                        R.drawable.ic_round_favorite
+                    else
+                        R.drawable.ic_round_favorite_border
+                )
             }
         }
         observeExt(viewModel.refreshTime) {

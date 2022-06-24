@@ -1,4 +1,4 @@
-package com.ramo.cryptocurrency.ui.auth.login
+package com.ramo.cryptocurrency.ui.auth.register
 
 import android.os.Bundle
 import android.text.Editable
@@ -7,12 +7,12 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.navigation.fragment.findNavController
 import com.ramo.cryptocurrency.core.BaseFragment
 import com.ramo.cryptocurrency.core.ext.setState
-import com.ramo.cryptocurrency.databinding.FragmentLoginBinding
+import com.ramo.cryptocurrency.databinding.FragmentRegisterBinding
 import com.ramo.sweetsdk.ext.observeExt
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
+class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterViewModel>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -21,10 +21,12 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
 
     private fun initUi() = withVB {
         btnLogin.setOnClickListener {
-            viewModel.login()
+            viewModel.register()
         }
-        btnRegister.setOnClickListener {
-            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
+        btnLogin.setOnClickListener {
+            findNavController().navigate(
+                RegisterFragmentDirections.actionGlobalLoginFragment()
+            )
         }
         etEMail.doAfterTextChanged { text: Editable? ->
             viewModel.email = text?.toString() ?: ""
@@ -42,10 +44,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
             binding.tilPassword.setState(it)
         }
 
-        observeExt(viewModel.isLogin) { isLogin ->
+        observeExt(viewModel.isRegister) { isLogin ->
             if (isLogin)
                 findNavController().navigate(
-                    LoginFragmentDirections.actionLoginFragmentToHomeFragment()
+                    RegisterFragmentDirections.actionRegisterFragmentToHomeFragment()
                 )
         }
     }
