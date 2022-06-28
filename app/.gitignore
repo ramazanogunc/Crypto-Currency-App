@@ -351,4 +351,4 @@ Thumbs.db
 # End of https://www.toptal.com/developers/gitignore/api/android,androidstudio,gradle,intellij,kotlin,java
 
 # Google services file for Firebase
-google-services.json
+# google-services.json
